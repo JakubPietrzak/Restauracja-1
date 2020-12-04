@@ -1,0 +1,199 @@
+#include<iostream>
+#include<conio.h>
+
+using namespace std;
+class Szef_kuchni {
+
+public:
+	int NumerIDPracownika;
+	string ImieSzefaKuchni;
+	string NazwiskoSzefaKuchni;
+};
+
+class Kelner
+{
+public:
+	int NumerIDPracownika;
+	string ImieKelnera;
+	string NazwiskoKelnera;
+};
+
+class Zamowienie
+{
+public:
+	int NumerIDZamowienia;
+	//date TerminZamowienia;
+	int NumerKelnetaTegoZamowienia;
+	int KolejnoscZamowienia;
+	double ZnizkaNaZamowienie;
+	string StatusZamowienia;
+	string RodzajPlatnosciZaZamowienie;
+	void PrzygotowanieZamowienia();
+	void SerwowanieZamowienia();
+};
+
+class Rachunek
+{
+	int NumerIDRachunku;
+	//Data wystawienia rachunku
+	string PozycjeZamowienia;
+	double CalkowityKosztZamowienia;
+	void PrzekazanieRachunku();
+	double OdebranieZaplaty();
+};
+
+class Napoje {
+
+public:
+	int NumerIDNapoju;
+	string NazwaNapoju;
+	double CenaNapoju;
+};
+
+
+class Dostawca {
+
+public:
+	int NumerIDPracownika;
+	string ImieDostawcy;
+	string NazwiskoDostawcy;
+};
+
+
+
+class Manager {
+
+public:
+	int NumerIDPracownika;
+	string ImieManagera;
+	string NazwiskoManagera;
+};
+
+class Posilki
+{
+public:
+	int NumerIDPosilku;
+	string NazwaPosilku;
+	double CenaPosilku;
+	bool PrzygotowaniePosilku();
+};
+
+class Magazyn
+{
+public:
+	int NumerIdProduktu;
+	string NazwaProduktu;
+	double CenaProduktu;
+	void SprawdzenieStanuZaopatrzenia();
+	void ZlozenieZamowienia();
+	void DostarczenieZamowienia();
+	void ZmianaStanuMagazynu();
+};
+
+int main()
+{
+	string login;
+	string password = "";
+	string correctPasswordChef = "szefkuchni";
+	string correctPasswordWaiter = "kelner";
+	string correctPasswordManager = "manager";
+	string correctPasswordSupplier = "dostawca";
+	unsigned tries = 3;
+	char character = ' ';
+
+	cout << "Podaj login" << endl;
+	cin >> login;
+	if (login != "Kelner" || login != "SzefKuchni" ||  login != "Manager" || login != "Dostawca")
+	{
+		cout << "Podano zly login, skontaktuj sie z administratorem w celu zmiany loginu i hasla badz wpisz jeszcze raz: " << endl;
+		
+	}
+	cin >> login;
+	
+		if (login == "Kelner")
+		{
+			cout << "Wpisano login dla kelnera" << endl;
+			do {
+				cout << "Wpisz haslo: ";
+				while ((character = _getch()) != '\r') {
+					cout << "*";
+					password += character;
+				}
+
+				if (password != correctPasswordWaiter) {
+					password = "";
+					tries -= 1;
+					cout << "\nDostepne proby: " << tries << endl;
+				}
+			} while (tries > 0 && password != correctPasswordWaiter);
+
+			if (tries == 0) cout << "\nUzytkownik zablokowany!\n";
+			else cout << "\nHaslo poprawne. Witamy w systemie!\n";
+		}
+		if (login == "SzefKuchni")
+		{
+			cout << "Wpisano login dla szefa kuchni" << endl;
+			do {
+				cout << "Wpisz haslo: ";
+				while ((character = _getch()) != '\r') {
+					cout << "*";
+					password += character;
+				}
+
+				if (password != correctPasswordChef) {
+					password = "";
+					tries -= 1;
+					cout << "\nDostepne proby: " << tries << endl;
+				}
+			} while (tries > 0 && password != correctPasswordChef);
+
+			if (tries == 0) cout << "\nUzytkownik zablokowany!\n";
+			else cout << "\nHaslo poprawne. Witamy w systemie!\n";
+		}
+
+		if (login == "Manager")
+		{
+			cout << "Wpisano login dla Managera" << endl;
+			do {
+				cout << "Wpisz haslo: ";
+				while ((character = _getch()) != '\r') {
+					cout << "*";
+					password += character;
+				}
+
+				if (password != correctPasswordManager) {
+					password = "";
+					tries -= 1;
+					cout << "\nDostepne proby: " << tries << endl;
+				}
+			} while (tries > 0 && password != correctPasswordManager);
+
+			if (tries == 0) cout << "\nUzytkownik zablokowany!\n";
+			else cout << "\nHaslo poprawne. Witamy w systemie szefie!\n";
+		}
+
+		if (login == "Dostawca")
+		{
+			cout << "Wpisano login dla dostawcy" << endl;
+			do {
+				cout << "Wpisz haslo: ";
+				while ((character = _getch()) != '\r') {
+					cout << "*";
+					password += character;
+				}
+
+				if (password != correctPasswordSupplier) {
+					password = "";
+					tries -= 1;
+					cout << "\nDostepne proby: " << tries << endl;
+				}
+			} while (tries > 0 && password != correctPasswordSupplier);
+
+			if (tries == 0) cout << "\nUzytkownik zablokowany!\n";
+			else cout << "\nHaslo poprawne. Witamy w systemie!\n";
+		}
+	
+	cout<<endl << "Restaurant project by: Michal Nycz, Jakub Pietrzak, Artur Pietrzkiewicz" << endl;
+	system("pause");
+	return 0;
+}
